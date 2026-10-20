@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pocket Pressure: private blood pressure tracker for Android</title>
+<meta name="description" content="Pocket Pressure is a private blood pressure tracker and log for Android. Your readings stay on your phone: no account, no ads, no analytics. Charts, PDF reports and an optional one-time Premium purchase.">
+<link rel="canonical" href="https://seanashmore.github.io/pocket-pressure/">
+<link rel="icon" type="image/png" href="favicon.png">
+<meta name="theme-color" content="#0062a3">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pocket Pressure: private blood pressure tracker for Android">
+<meta property="og:description" content="Your readings stay on your phone. No account, no ads, no analytics. Charts, PDF reports, optional one-time Premium.">
+<meta property="og:url" content="https://seanashmore.github.io/pocket-pressure/">
+<meta property="og:image" content="https://seanashmore.github.io/pocket-pressure/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "Pocket Pressure",
+  "operatingSystem": "ANDROID",
+  "applicationCategory": "HealthApplication",
+  "description": "A private blood pressure tracker and log for Android. Readings are stored only on your phone, with charts, PDF reports and an optional one-time Premium purchase. Not a medical device.",
+  "url": "https://seanashmore.github.io/pocket-pressure/",
+  "downloadUrl": "https://play.google.com/store/apps/details?id=com.alittlelost.bptracker",
+  "publisher": { "@type": "Organization", "name": "Little Lost Projects" }
+}
+</script>
+<style>
+  :root {
+    --bg: #fafcff; --surface: #eef2f9; --text: #14202b; --muted: #45566a;
+    --primary: #0062a3; --on-primary: #ffffff; --accent: #d9e6f7; --border: #d3dcea;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12171d; --surface: #1c242d; --text: #e6edf5; --muted: #a9b7c8;
+      --primary: #8ec3f5; --on-primary: #06263f; --accent: #223648; --border: #2c3846;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  a { color: var(--primary); }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+  header.hero { padding: 56px 0 40px; text-align: center; }
+  .icon { width: 96px; height: 96px; border-radius: 22px; box-shadow: 0 2px 12px rgba(0,0,0,.18); }
+  h1 { font-size: clamp(2rem, 6vw, 3rem); line-height: 1.15; margin: 20px 0 12px; }
+  .lead { font-size: 1.2rem; color: var(--muted); max-width: 620px; margin: 0 auto 28px; }
+  .button { display: inline-block; background: var(--primary); color: var(--on-primary);
+    padding: 14px 28px; border-radius: 999px; font-weight: 600; text-decoration: none; }
+  .button:focus-visible, a:focus-visible { outline: 3px solid var(--text); outline-offset: 3px; }
+  .small { font-size: .92rem; color: var(--muted); margin-top: 14px; }
+  section { padding: 40px 0; }
+  h2 { font-size: 1.7rem; margin: 0 0 18px; }
+  .pills { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 26px 0 0; padding: 0; list-style: none; }
+  .pills li { background: var(--accent); padding: 6px 16px; border-radius: 999px; font-size: .95rem; }
+  .shots { display: flex; gap: 18px; overflow-x: auto; padding: 6px 2px 18px; scroll-snap-type: x mandatory; }
+  .shots figure { margin: 0; flex: 0 0 auto; width: 220px; scroll-snap-align: start; }
+  .shots img { width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--border); display: block; }
+  .shots figcaption { font-size: .85rem; color: var(--muted); margin-top: 8px; text-align: center; }
+  .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 20px; }
+  .card h3 { margin: 0 0 8px; font-size: 1.1rem; }
+  .card p { margin: 0; color: var(--muted); }
+  details { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 18px; margin-bottom: 10px; }
+  summary { cursor: pointer; font-weight: 600; }
+  details p { margin: 10px 0 0; color: var(--muted); }
+  .note { background: var(--accent); border-radius: 14px; padding: 16px 20px; }
+  footer { border-top: 1px solid var(--border); padding: 28px 0 48px; color: var(--muted); font-size: .95rem; text-align: center; }
+  footer a { margin: 0 8px; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <img class="icon" src="img/icon-192.png" width="96" height="96" alt="Pocket Pressure app icon">
+    <h1>Pocket Pressure</h1>
+    <p class="lead">A simple, private blood pressure tracker for Android. Your readings stay on your phone.</p>
+    <a class="button" href="https://play.google.com/store/apps/details?id=com.alittlelost.bptracker">View on Google Play</a>
+    <p class="small">Free to use. Android only.</p>
+    <ul class="pills" aria-label="Key points">
+      <li>No account</li>
+      <li>No ads</li>
+      <li>No analytics</li>
+      <li>Works offline</li>
+      <li>Encrypted on your phone</li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <section>
+    <div class="wrap">
+      <h2>See it in action</h2>
+      <div class="shots" role="list">
+        <figure role="listitem"><img src="img/history.webp" width="420" height="747" alt="The History screen listing blood pressure readings by day" loading="lazy"><figcaption>Log readings in seconds</figcaption></figure>
+        <figure role="listitem"><img src="img/trends.webp" width="420" height="747" alt="A chart of systolic and diastolic readings over time" loading="lazy"><figcaption>See your trends</figcaption></figure>
+        <figure role="listitem"><img src="img/report.webp" width="420" height="747" alt="A PDF report to take to a doctor (Premium)" loading="lazy"><figcaption>A report to share (Premium)</figcaption></figure>
+        <figure role="listitem"><img src="img/private.webp" width="420" height="747" alt="The app lock screen" loading="lazy"><figcaption>Private by design</figcaption></figure>
+        <figure role="listitem"><img src="img/insights.webp" width="420" height="747" alt="Insights comparing this week with last week (Premium)" loading="lazy"><figcaption>Insights (Premium)</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>What it does</h2>
+      <div class="grid">
+        <div class="card"><h3>Log a reading in seconds</h3><p>Record systolic, diastolic and pulse, with the arm, your position and a note when you want more detail. Add a daily reminder at a time that suits you.</p></div>
+        <div class="card"><h3>See how it changes</h3><p>Charts over a week, month, three months, six months or a year, with averages and ranges, and a history you can filter by date.</p></div>
+        <div class="card"><h3>Share when you choose</h3><p>Make a PDF report to take to your doctor, export or import your readings as CSV, and optionally send them to Health Connect.</p></div>
+        <div class="card"><h3>Keep track of family</h3><p>With Premium, add profiles for a partner or parent, each with their own readings, reminders and report.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Private by design</h2>
+      <div class="grid">
+        <div class="card"><h3>Your data stays on your phone</h3><p>There is no account and no cloud. Readings are kept in an encrypted database on your device and are not backed up or sent anywhere unless you export them.</p></div>
+        <div class="card"><h3>Optional App Lock</h3><p>Protect the app with a PIN or your fingerprint or face.</p></div>
+        <div class="card"><h3>No tracking</h3><p>No ads, no analytics, no tracking. This page has no cookies or analytics either. Read the <a href="https://seanashmore.github.io/pocket-pressure-privacy/">full privacy policy</a>.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Free, with one optional upgrade</h2>
+      <p>Pocket Pressure is free to use. There is an optional one-time Premium purchase through Google Play, and <strong>no subscription</strong>. Premium adds the full doctor report with your details, Insights that compare this week or month with the last, extra profiles, multiple reminders, home screen widgets and custom colour themes. Everything else stays free.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Questions</h2>
+      <details><summary>Does it measure my blood pressure?</summary><p>No. You type in the readings from your own blood pressure monitor. The app records them, charts them and helps you share them.</p></details>
+      <details><summary>Is it a medical device?</summary><p>No. Pocket Pressure is a personal tracking tool. It does not diagnose or treat any condition and does not give medical advice. Always consult a qualified healthcare professional to interpret your readings or with any health concerns.</p></details>
+      <details><summary>Will my readings move to a new phone?</summary><p>Not automatically, because they're stored only on your device. Export a CSV from Settings, then import it on the new phone.</p></details>
+      <details><summary>Is it available on iPhone?</summary><p>Not at the moment. It is Android only.</p></details>
+      <details><summary>How do I get in touch?</summary><p>Email <a href="mailto:littlelostprojects@gmail.com">littlelostprojects@gmail.com</a>.</p></details>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="note"><strong>Important:</strong> Pocket Pressure is a personal tracking tool for logging blood pressure readings. It is not a medical device, does not diagnose or treat any condition, and does not provide medical advice. Always consult a qualified healthcare professional to interpret your readings or with any health concerns.</div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><a href="https://play.google.com/store/apps/details?id=com.alittlelost.bptracker">Google Play</a>
+    <a href="https://seanashmore.github.io/pocket-pressure-privacy/">Privacy policy</a>
+    <a href="mailto:littlelostprojects@gmail.com">Contact</a></p>
+    <p>Pocket Pressure is published by Little Lost Projects.</p>
+  </div>
+</footer>
+
+</body>
+</html>
